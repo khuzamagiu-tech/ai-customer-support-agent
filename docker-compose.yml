@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ai-support-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: customer_support
+      POSTGRES_USER: support_user
+      POSTGRES_PASSWORD: support_password
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U support_user -d customer_support']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

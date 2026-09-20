@@ -1,0 +1,19 @@
+{
+  "name": "ai-customer-support-agent",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm -w @ai-customer-support-agent/web run dev",
+    "dev:api": "npm -w @ai-customer-support-agent/api run dev",
+    "build:web": "npm -w @ai-customer-support-agent/web run build",
+    "build:api": "npm -w @ai-customer-support-agent/api run build",
+    "build": "npm run build:web && npm run build:api",
+    "lint": "npm -w @ai-customer-support-agent/web run lint && npm -w @ai-customer-support-agent/api run lint",
+    "typecheck": "npm -w @ai-customer-support-agent/shared run typecheck && npm -w @ai-customer-support-agent/web run typecheck && npm -w @ai-customer-support-agent/api run typecheck",
+    "test": "node --test --import tsx tests/**/*.test.ts"
+  }
+}
